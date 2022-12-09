@@ -1470,8 +1470,8 @@ int find_hid_device(char *videobusname)
 				"usb",
 				"usb_device");
 		if (!pdev) {
-			printf("Unable to find parent usb device.");
-			exit(1);
+			printf("Unable to find parent usb device for dev at path: %s. Looking on the next one.",path);
+			continue;
 		}
 
 		/* From here, we can call get_sysattr_value() for each file in the device's /sys entry. The strings passed into these functions (idProduct, idVendor, serial, 			etc.) correspond directly to the files in the /sys directory which represents the USB device. Note that USB strings are Unicode, UCS2 encoded, but the strings    		returned from udev_device_get_sysattr_value() are UTF-8 encoded. */
