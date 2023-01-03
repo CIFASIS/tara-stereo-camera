@@ -22,6 +22,16 @@ namespace uvc_camera {
 		node(_comm_nh), it(_comm_nh), info_mgr_left(_comm_nh.get(), "cameraLeft"),
 		info_mgr_right(_comm_nh.get(), "cameraRight"), cam(0) {
 
+			/* parameters declaration */
+			node->declare_parameter("width", rclcpp::ParameterType::PARAMETER_INTEGER);
+			node->declare_parameter("height", rclcpp::ParameterType::PARAMETER_INTEGER);
+			node->declare_parameter("fps", rclcpp::ParameterType::PARAMETER_INTEGER);
+			node->declare_parameter("frame", rclcpp::ParameterType::PARAMETER_STRING);
+			node->declare_parameter("device", rclcpp::ParameterType::PARAMETER_STRING);
+			node->declare_parameter("exposureValue", rclcpp::ParameterType::PARAMETER_INTEGER);
+			node->declare_parameter("cameraLeft_info_url", rclcpp::ParameterType::PARAMETER_STRING);
+			node->declare_parameter("cameraRight_info_url", rclcpp::ParameterType::PARAMETER_STRING);
+
 			/* default config values */
 			width = 640;
 			height = 480;
