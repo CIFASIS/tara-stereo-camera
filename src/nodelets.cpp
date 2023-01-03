@@ -1,7 +1,6 @@
-#include <ros/ros.h>
-#include <ros/time.h>
+#include <rclcpp/rclcpp.hpp>
 
-#include <pluginlib/class_list_macros.h>
+#include <pluginlib/class_list_macros.hpp>
 #include <nodelet/nodelet.h>
 
 #include "uvc_camera/camera.h"
@@ -14,8 +13,8 @@ class CameraNodelet : public nodelet::Nodelet {
     CameraNodelet() {}
 
     void onInit() {
-      ros::NodeHandle node = getNodeHandle();
-      ros::NodeHandle pnode = getPrivateNodeHandle();
+      rclcpp::Node::SharedPtr node = getNodeHandle();
+      rclcpp::Node::SharedPtr pnode = getPrivateNodeHandle();
 
       camera = new Camera(node, pnode);
     }
@@ -33,8 +32,8 @@ class StereoNodelet : public nodelet::Nodelet {
     StereoNodelet() {}
 
     void onInit() {
-      ros::NodeHandle node = getNodeHandle();
-      ros::NodeHandle pnode = getPrivateNodeHandle();
+      rclcpp::Node::SharedPtr node = getNodeHandle();
+      rclcpp::Node::SharedPtr pnode = getPrivateNodeHandle();
 
       stereo = new StereoCamera(node, pnode);
     }
@@ -49,6 +48,6 @@ class StereoNodelet : public nodelet::Nodelet {
 
 };
 
-PLUGINLIB_DECLARE_CLASS(uvc_camera, CameraNodelet, uvc_camera::CameraNodelet, nodelet::Nodelet);
-PLUGINLIB_DECLARE_CLASS(uvc_camera, StereoNodelet, uvc_camera::StereoNodelet, nodelet::Nodelet);
+PLUGINLIB_EXPORT_CLASS(uvc_camera::CameraNodelet, nodelet::Nodelet);
+PLUGINLIB_EXPORT_CLASS(uvc_camera::StereoNodelet, nodelet::Nodelet);
 
