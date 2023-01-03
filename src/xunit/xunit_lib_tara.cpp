@@ -514,7 +514,7 @@ BOOL SetManualExposureValue_Stereo(INT32 ExposureValue)
  *  Description	:   Sets the sensitivity to be multiplied in a global variable.  *
  **********************************************************************************************************
  */
-void IMUSensitivityConfig(IMUCONFIG_TypeDef lIMUConfig)
+void IMUSensitivityConfig()
 {
 	switch (glIMUConfig.ACC_SENSITIVITY_CONFIG * 0x08)
 	{
@@ -612,7 +612,7 @@ BOOL GetIMUConfig(IMUCONFIG_TypeDef *lIMUConfig)
 					lIMUConfig->GYRO_SENSITIVITY_CONFIG	= g_in_packet_buf[12];
 
 					glIMUConfig			= *lIMUConfig;
-					IMUSensitivityConfig(glIMUConfig);
+					IMUSensitivityConfig();
 					g_IsIMUConfigured	= TRUE;
 
 					timeout = FALSE;
@@ -743,7 +743,7 @@ SKIP_IMU_CONFIG_ACC_GYRO_DISABLE:
 					g_in_packet_buf[1] == SET_IMU_CONFIG ) {
 				if(g_in_packet_buf[25] == SET_SUCCESS) {
 					glIMUConfig			= lIMUConfig;
-					IMUSensitivityConfig(glIMUConfig);
+					IMUSensitivityConfig();
 					g_IsIMUConfigured	= TRUE;
 					timeout = FALSE;
 				} else if(g_in_packet_buf[25] == SET_FAIL) {
@@ -1444,7 +1444,7 @@ int find_hid_device(char *videobusname)
 	if (!udev) {
 		printf("Can't create udev\n");
 		exit(1);
-	}
+	}	
 
 	/* Create a list of the devices in the 'hidraw' subsystem. */
 	enumerate = udev_enumerate_new(udev);
