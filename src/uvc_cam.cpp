@@ -672,7 +672,7 @@ void Cam::release(unsigned buf_idx)
 			throw std::runtime_error("couldn't requeue buffer");
 }
 
-int xioctl(int fd, int IOCTL_X, void *arg)
+int xioctl(int fd, unsigned long IOCTL_X, void *arg)
 {
 	const int IOCTL_RETRY = 5;
 	int ret = 0;
@@ -684,7 +684,7 @@ int xioctl(int fd, int IOCTL_X, void *arg)
 	while (ret && tries-- &&
 			((errno == EINTR) || (errno == EAGAIN) || (errno == ETIMEDOUT)));
 
-	if (ret && (tries <= 0)) printf("ioctl (%i) retried %i times - giving up: %s)\n", IOCTL_X, IOCTL_RETRY, strerror(errno));
+	if (ret && (tries <= 0)) printf("ioctl (%lu) retried %i times - giving up: %s)\n", IOCTL_X, IOCTL_RETRY, strerror(errno));
 
 	return (ret);
 }
