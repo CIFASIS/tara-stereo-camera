@@ -388,6 +388,8 @@ namespace uvc_camera {
 			cout << "ControlIMUCapture Failed\n";
 			return FALSE;
 		}
+
+		return TRUE;
 	}
 
 	BOOL taraCamera::LoadCameraMatrix()
