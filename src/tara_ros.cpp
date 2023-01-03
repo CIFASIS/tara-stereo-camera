@@ -1013,6 +1013,9 @@ namespace uvc_camera {
 		IMUValue.orientation.y = q2;
 		IMUValue.orientation.z = q3;
 */
+		IMUValue.header.stamp = clock.now();
+		// IMUValue.header.frame_id = IMU;
+		IMU_pub->publish(IMUValue);		
 	}
 
 	//---------------------------------------------------------------------------------------------------
