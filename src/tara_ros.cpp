@@ -285,7 +285,6 @@ namespace uvc_camera {
 	}
 
 	void taraCamera::feedImages() {
-		unsigned int pair_id = 0;
 		while (ok) {
 			unsigned char *img_frame = NULL;
 			unsigned char *right_frame = NULL;
@@ -312,7 +311,6 @@ namespace uvc_camera {
 					image->step = width;
 
 					image->header.stamp = capture_time;
-					image->header.seq = pair_id;
 					image->data.resize(image->step * image->height);
 
 					/* left and right frame  */             
@@ -335,7 +333,6 @@ namespace uvc_camera {
 
 
 					image->header.stamp = capture_time;
-					image->header.seq = pair_id;
 					image->header.frame_id = frame;
 					image->data.resize(image->step * image->height);
 
@@ -354,7 +351,6 @@ namespace uvc_camera {
 					pub_concat.publish(*image);
 
 					//ROS_INFO_STREAM("capture time: " << capture_time);
-					++pair_id;
 				}
 
 				frames_to_skip = skip_frames;
