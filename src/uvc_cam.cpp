@@ -99,13 +99,14 @@ enumerate_menu (int device_file_h_,
 			{
 //				printf("  discrete: %ux%u:   ",fsize.discrete.width, fsize.discrete.height);
 
+/*
 				// enumerate frame rates
 				v4l2_frmivalenum fival;
 				fival.index = 0;
 				fival.pixel_format = format_desc.pixelformat;
 				fival.width = fsize.discrete.width;
 				fival.height = fsize.discrete.height;
-/*
+
 				while ((ret = ioctl(device_file_h_, VIDIOC_ENUM_FRAMEINTERVALS, &fival)) == 0)
 				{
 					fival.index++;
