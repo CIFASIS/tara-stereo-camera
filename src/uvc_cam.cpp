@@ -20,7 +20,7 @@
 using std::string;
 using namespace uvc_cam;
 
-
+/*
 	static void
 enumerate_menu (int device_file_h_,
 		struct v4l2_queryctrl &queryctrl,
@@ -39,7 +39,7 @@ enumerate_menu (int device_file_h_,
 		}
 	}
 }
-
+*/
 
 	Cam::Cam(const char *_device, mode_t _mode, int _width, int _height, int _fps)
 : mode_(_mode), device_(_device),
@@ -145,7 +145,7 @@ enumerate_menu (int device_file_h_,
 	///////////////////////////////////////////
 
 	struct v4l2_queryctrl queryctrl;
-	struct v4l2_querymenu querymenu;
+	//struct v4l2_querymenu querymenu;
 
 	memset (&queryctrl, 0, sizeof (queryctrl));
 
