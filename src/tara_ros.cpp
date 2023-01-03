@@ -66,8 +66,8 @@ namespace uvc_camera {
 
 			/* advertise image streams and info streams */
 			pub = it.advertise("image_raw", 1);
-			pub_left = it.advertise("left//image_raw", 1);
-			pub_right = it.advertise("right//image_raw", 1);
+			pub_left = it.advertise("left/image_raw", 1);
+			pub_right = it.advertise("right/image_raw", 1);
 			pub_concat = it.advertise("concat", 1);
 
 			exposure_pub = node->create_publisher<std_msgs::msg::Float64>("get_exposure", rclcpp::QoS(1).transient_local());
