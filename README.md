@@ -1,14 +1,47 @@
-see3cam
-=======
+tara-stereo-camera
+==================
 
-ROS driver for the e-consystems See3CAM_Stereo (Tara) camera based on the 
-[uvc_camera](https://github.com/ktossell/camera_umd/tree/master/uvc_camera) package.
+ROS2 driver for the e-consystems See3CAM_Stereo (Tara) camera based on the 
+[see3cam](https://github.com/dilipkumar25/see3cam) package.
 
-Creates a stereo image node pair (`left/image_raw` and `right/image_raw`) from any connected Tara devices. This is for compatibility with any other ROS modules which support stereo cameras.
-Added support for setting and getting exposure and brightness.
-Added support for getting IMU data.
+Publishes the left and right camera images apart and also concatenated. Haves support for setting and getting exposure and brightness and for getting IMU data.
 
-The following nodes will be created upon launching this driver.
+Installation
+============
+
+1) Clone this repo inside some directory which will be your ROS2 workspace (lets say ros2_ws) and cd into ros2_ws. There can be others ROS2 packages inside ros2_ws dir.
+```bash
+mkdir ros2_ws
+cd ros2_ws
+git clone https://github.com/CIFASIS/tara-stereo-camera
+```
+2) Compile the package:
+```bash
+colcon build --symlink-install
+```
+3) Create the directory which stores the camera config files (yaml):
+```bash
+mkdir ~/.ros/camera_info -p 
+```
+4) Assign permissions to use the device that corresponds to the camera:
+```bash
+sudo cp tara-stereo-camera/udev/99-uvc.rules /etc/udev/rules.d/99-uvc.rules
+```
+
+Launch
+======
+
+1) Configure the package's environment (you've to do this once on every terminal where you want to launch the package. Otherwise add the line to your ~/.bashrc file, in that case specify full path to setup.bash).
+```bash
+cd ros2_ws
+source install/setup.bash
+```
+2) Launch the package.
+```bash
+ros2 launch uvc_camera tara_launch.launch
+```
+
+The following topics will be created upon launching this driver.
 ```
     /stereo/concat
     /stereo/image_raw
@@ -21,13 +54,14 @@ The following nodes will be created upon launching this driver.
     /stereo/get_exposure
     /stereo/set_exposure
     /stereo/get_IMU
+    /stereo/get_inclination
 ```
 
-The Camera preview can be seen using any basic ROS camera application. `rqt_image_view` can be used for simplicity.
-To Install and use `rqt_image_view` 
+The Camera preview and IMU data can be seen using `RQt`.
+To Install and use `RQt`
 ```bash
-sudo apt-get install ros-jade-rqt-image-view
-rqt_image_view
+sudo apt install ros-humble-rqt*
+rqt
 ```
 
 Some Tested Examples
@@ -36,56 +70,54 @@ Some Tested Examples
 * To check the exposure of the camera at run time:
 
 ```bash
-rostopic echo /stereo/get_exposure
+ros2 topic echo /stereo/get_exposure
 ```
     
 * To check the brightness of the camera at run time:
 
 ```bash
-rostopic echo /stereo/get_brightness
+ros2 topic echo /stereo/get_brightness
 ```
     
 * To change the exposure of the camera at run time:
 
 ```bash
-rostopic pub -1 /stereo/set_exposure std_msgs/Float64 "data: <value>"
+ros2 topic pub -1 /stereo/set_exposure std_msgs/Float64 "data: <value>"
 ```
 
 e.g. :
 
 ```bash
-rostopic pub -1 /stereo/set_exposure std_msgs/Float64 "data: 20000"
+ros2 topic pub -1 /stereo/set_exposure std_msgs/Float64 "data: 20000"
 ```
 
 * To change the brightness of the camera at run time:
 
 ```bash
-rostopic pub -1 /stereo/set_brightness std_msgs/Float64 "data: <value>"
+ros2 topic pub -1 /stereo/set_brightness std_msgs/Float64 "data: <value>"
 ```
 
 e.g. :
 
 ```bash
-rostopic pub -1 /stereo/set_brightness std_msgs/Float64 "data: 6"
+ros2 topic pub -1 /stereo/set_brightness std_msgs/Float64 "data: 6"
 ```
 
 * To read the inclination of the camera using the built-in IMU:
 
 ```bash
-rostopic echo /stereo/get_inclination
+ros2 topic echo /stereo/get_inclination
 ```
 
 * To read the angular velocity and linear acceleration of the camera using built-in IMU:
 
 ```bash
-rostopic echo /stereo/get_IMU
+ros2 topic echo /stereo/get_IMU
 ```
 
-Known Issues
-============
+Comments
+========
 
-* The directory which stores the camera config files (yaml) has to be created manually for the first time after driver installation (catkin_make).
-
-```bash
-mkdir ~/.ros/camera_info -p 
-```
+Only the bare minimum of the package necessary to use the Tara camera has been migrated to ROS2.
+The package also have nodes to work with more general cameras and that hasn't been migrated.
+Anyone who need that migrated feel free to do it, the work already done may help to migrate what's left.
