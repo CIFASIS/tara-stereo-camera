@@ -71,7 +71,7 @@ namespace uvc_camera {
 			pub_concat = it.advertise("concat", 1);
 
 			exposure_pub = node->create_publisher<std_msgs::msg::Float64>("get_exposure", rclcpp::QoS(1).transient_local());
-			brightness_pub = node->create_publisher<std_msgs::msg::Float64>("get_brightness", 1);
+			brightness_pub = node->create_publisher<std_msgs::msg::Float64>("get_brightness", rclcpp::QoS(1).transient_local());
 
 			std::string urlLeft;
 			std::string urlRight;
