@@ -9,13 +9,14 @@ Publishes the left and right camera images apart and also concatenated. Haves su
 Installation
 ============
 
-1) Clone this repo inside some directory which will be your ROS2 workspace (lets say ros2_ws) and cd into ros2_ws. There can be others ROS2 packages inside ros2_ws dir.
+1) Clone this repo inside src directory which has to be inside some directory that will be your ROS2 workspace (lets say ros2_ws) and cd into ros2_ws. There can be others ROS2 packages inside src dir.
 ```bash
-mkdir ros2_ws
-cd ros2_ws
+mkdir ros2_ws/src -p
+cd ros2_ws/src
 git clone https://github.com/CIFASIS/tara-stereo-camera
+cd ..
 ```
-2) Compile the package:
+2) Compile the package (being at ros2_ws directory):
 ```bash
 colcon build --symlink-install
 ```
@@ -25,7 +26,7 @@ mkdir ~/.ros/camera_info -p
 ```
 4) Assign permissions to use the device that corresponds to the camera:
 ```bash
-sudo cp tara-stereo-camera/udev/99-uvc.rules /etc/udev/rules.d/99-uvc.rules
+sudo cp src/tara-stereo-camera/udev/99-uvc.rules /etc/udev/rules.d/99-uvc.rules
 ```
 
 Launch
