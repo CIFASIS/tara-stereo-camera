@@ -17,8 +17,8 @@
 						 in the shared library.
 	Declarations for all HID commands and MACROS.
 **********************************************************************/
-#ifndef XUNIT_LIB_H
-#define XUNIT_LIB_H
+#ifndef XUNIT_LIB_TARA_H
+#define XUNIT_LIB_TARA_H
 
 #include <stdbool.h>
 #include <libudev.h>
