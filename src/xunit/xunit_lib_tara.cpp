@@ -1436,7 +1436,7 @@ int find_hid_device(char *videobusname)
 	struct udev_enumerate *enumerate;
 	struct udev_list_entry *devices, *dev_list_entry;
 	struct udev_device *dev, *pdev;
-	int ret = FAILURE;
+	int ret = -1; //FAILURE;
 	char buf[256];
 
 	/* Create the udev object */
@@ -1502,7 +1502,7 @@ int find_hid_device(char *videobusname)
 		}
 		//check if bus names are same or else close the hid device
 		if(!strncmp(videobusname,buf,strlen(videobusname))){
-			ret = SUCCESS;
+			ret = 1; // ret = SUCCESS;
 			hid_device_array[countHidDevices] = hid_device;
 			countHidDevices++;
 		}

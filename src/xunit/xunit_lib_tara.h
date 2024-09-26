@@ -65,8 +65,8 @@ typedef struct {
 #define SET_SUCCESS		0x01
 #define GET_FAIL		0x00
 #define GET_SUCCESS		0x01
-#define SUCCESS			 1
-#define FAILURE			-1
+// #define SUCCESS			 1
+// #define FAILURE			-1
 
 #define BUFFER_LENGTH					65
 #define TIMEOUT							2000

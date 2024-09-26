@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.5)
 project(uvc_camera)
 
 if(NOT CMAKE_CXX_STANDARD)
@@ -103,7 +103,7 @@ target_link_libraries(tara_node
 	camera_info_manager::camera_info_manager
 	camera_calibration_parsers::camera_calibration_parsers
 	xunitTara
-	-lv4l2 -ludev -lglib-2.0
+	-lv4l2 -ludev -lglib-2.0 yaml-cpp
 )
 
 #############
