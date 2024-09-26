@@ -6,6 +6,12 @@ ROS2 driver for the e-consystems See3CAM_Stereo (Tara) camera based on the
 
 Publishes the left and right camera images apart and also concatenated. Haves support for setting and getting exposure and brightness and for getting IMU data.
 
+Dependencies
+============
+```bash
+sudo apt install ros-<ROS-DISTRO>-camera-info-manager*
+```
+
 Installation
 ============
 
