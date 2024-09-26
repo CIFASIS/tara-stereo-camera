@@ -37,6 +37,11 @@ mkdir ~/.ros/camera_info -p
 ```bash
 sudo cp src/tara-stereo-camera/udev/99-uvc.rules /etc/udev/rules.d/99-uvc.rules
 ```
+or do temporaly 
+```
+sudo chmod a+rw /dev/hidrawXX
+```
+where XX is replaced by the camera device index
 
 Launch
 ======
