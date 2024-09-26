@@ -10,7 +10,9 @@ Dependencies
 ============
 ```bash
 sudo apt install ros-<ROS-DISTRO>-camera-info-manager*
-apt-get install libv4l-dev
+sudo apt-get install libv4l-dev
+sudo apt install libudev-dev
+sudo apt install libglib2.0-dev
 ```
 
 Installation
