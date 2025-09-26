@@ -13,6 +13,7 @@ sudo apt install ros-<ROS-DISTRO>-camera-info-manager*
 sudo apt-get install libv4l-dev
 sudo apt install libudev-dev
 sudo apt install libglib2.0-dev
+pip install catkin_pkg
 ```
 
 Installation
