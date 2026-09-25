@@ -52,7 +52,7 @@ Launch
 cd ros2_ws
 source install/setup.bash
 ```
-2) Launch the package. (remember to check which device index (e.g. /dev/videoXX) is the camera and modify the launch accordingly)
+2) Launch the package. **(remember to check which device index (e.g. /dev/videoXX) is the camera and modify the launch accordingly)**
 ```bash
 ros2 launch uvc_camera tara_launch.launch
 ```
