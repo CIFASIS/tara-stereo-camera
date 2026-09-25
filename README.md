@@ -9,7 +9,7 @@ Publishes the left and right camera images apart and also concatenated. Haves su
 Dependencies
 ============
 ```bash
-sudo apt install ros-<ROS-DISTRO>-camera-info-manager*
+sudo apt install ros-${ROS_DISTRO}-camera-info-manager*
 sudo apt-get install libv4l-dev
 sudo apt install libudev-dev
 sudo apt install libglib2.0-dev
