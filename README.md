@@ -76,7 +76,7 @@ The following topics will be created upon launching this driver.
 The Camera preview and IMU data can be seen using `RQt`.
 To Install and use `RQt`
 ```bash
-sudo apt install ros-humble-rqt*
+sudo apt install ros-${ROS_DISTRO}-rqt*
 rqt
 ```
 
